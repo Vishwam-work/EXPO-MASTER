@@ -18,15 +18,16 @@ const Performa = () => {
       <div className="performacontainer">
         <Navbar />
         <div className="widget">
-          <Performa_widgets type="Total_sale" />
-          <Performa_widgets type="Toal_receipt" />
-          <Performa_widgets type="Total_Due" />
-          <Performa_widgets type="Total_Expenses" />
+          <Performa_widgets type="Purchase_order" />
+          <Performa_widgets type="Porforma" />
+          <Performa_widgets type="Invoice" />
+          <Performa_widgets type="BL_draft" />
         </div>
         <div className="maincontainer">
-          <h1 style={{ color: "#3E4AB6", fontSize: "28px", marginBottom: "50px" }}>Performa invoice</h1>
+          <h1 style={{ color: "#3E4AB6", fontSize: "28px", marginBottom: "50px" }}>Porforma invoice</h1>
           <Link to="/performaDocs" style={{ textDecoration: "none" }}>
-            <span style={{ border: "2px solid #3E4AB6", padding: "5px", borderRadius: "10px", marginBottom: "50px", color: "white", background: "lightgreen", fontSize: "1.2rem", fontWeight: "600" }}>Add New</span>
+            {/* <span style={{ border: "2px solid #3E4AB6", padding: "5px", borderRadius: "10px", marginBottom: "50px", color: "white", background: "lightgreen", fontSize: "1.2rem", fontWeight: "600" }}>Add New</span> */}
+          <Button variant='success'>Add New</Button>
           </Link>
 
         </div>

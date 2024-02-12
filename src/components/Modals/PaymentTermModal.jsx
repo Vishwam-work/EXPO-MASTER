@@ -19,7 +19,7 @@ export default function PaymentTermModal() {
 
     const handleClose = () => {
         setShow(false);
-        // window.location.reload();
+        window.location.reload();
         setNewOption('');
     };
     

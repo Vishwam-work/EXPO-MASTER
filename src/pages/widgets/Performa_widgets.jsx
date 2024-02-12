@@ -1,36 +1,89 @@
-import React from 'react'
+import React, { useState ,useEffect} from 'react'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import "../../style/widgets/widgets.scss"
+import axios from "axios";
+
 function Performa_widgets({type}){
     let data;
+    const [purchasecount,setpurchasecount]=useState("")
+    const [porforma,setporforma]=useState("")
+    const [invoice,setinvoice]=useState("")
+    const [bldraftcount,setbldraftcount]=useState("")
+    useEffect(() => {
+        axios
+          .get("http://127.0.0.1:8000/expo/countPurchase/")
+          .then((response) => {
+            setpurchasecount(response.data.purchase_count);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }, []);
+    useEffect(() => {
+        axios
+          .get("http://127.0.0.1:8000/expo/countPorforma/")
+          .then((response) => {
+            setporforma(response.data.porforma_count);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }, []);
+      console.log("purchaseCount",purchasecount)
+    useEffect(() => {
+        axios
+          .get("http://127.0.0.1:8000/expo/countInvoice/")
+          .then((response) => {
+            setinvoice(response.data.INVOICE_COUNT);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }, []);
+      console.log("invoice",invoice)
 
+      useEffect(() => {
+        axios
+          .get("http://127.0.0.1:8000/expo/countBLdraft/")
+          .then((response) => {
+            setbldraftcount(response.data.blcount);
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }, []);
+      
     switch (type) {
-        case 'Total_sale':
+        case 'Purchase_order':
             data = {
-                title: 'Total Sales',
-                icon: <AttachMoneyIcon className='icon' />
+                title: 'Purchase Order',
+                icon: <AttachMoneyIcon className='icon' />,
+                value: purchasecount
+            }
+            
+            break;
+            case 'Porforma':
+                data = {
+                    title: 'Porforma Invoice',
+                    icon: <PostAddIcon className='icon' />,
+                    value: porforma
             }
 
             break;
-        case 'Toal_receipt':
+        case 'Invoice':
             data = {
-                title: 'Total Receipts',
-                icon: <PostAddIcon className='icon' />
+                title: 'Invoice',
+                icon: <PostAddIcon className='icon' />,
+                value: invoice
             }
 
             break;
-        case 'Total_Due':
+        case 'BL_draft':
             data = {
-                title: 'Total Due',
-                icon: <PostAddIcon className='icon' />
-            }
-
-            break;
-        case 'Total_Expenses':
-            data = {
-                title: 'Total Expenses',
-                icon: <PostAddIcon className='icon' />
+                title: 'BL Draft',
+                icon: <PostAddIcon className='icon' />,
+                value : bldraftcount
             }
 
             break;
@@ -38,12 +91,13 @@ function Performa_widgets({type}){
         default:
             break;
     }
+    // console.log("data title",data.title)
     return (
         <div className="widgets">
             <div className="left">
                 <span className='title'>{data.title}</span>
-                <span className='Counter'>1</span>
-
+                
+                <span className='Counter'>{data.value}</span>
             </div>
             <div className="right">
                 <span className='icon'>{data.icon}</span>

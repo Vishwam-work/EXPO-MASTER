@@ -21,6 +21,7 @@
         height: 0;
         border: 0.5px solid rgb(173, 191, 230);
     }
+    
     .center{
         padding-left: 20px;
         ul{
@@ -34,6 +35,8 @@
                 margin-top: 18px;
                 margin-bottom: 8px;
             }
+            
+           
             li{
                 display: flex;
                 align-items: center;
@@ -41,6 +44,10 @@
                 cursor: pointer;
                 &:hover{
                     background-color: #ece8ff;
+                }
+                &.active-link{
+                    background-color: #ece8ff;
+                    
                 }
                 span{
                     font-size: 18px;
@@ -52,6 +59,7 @@
                     color:#734ff3;
                 }
             }
+            
             
         }
     }

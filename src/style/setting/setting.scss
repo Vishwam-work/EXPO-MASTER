@@ -1,0 +1,21 @@
+.setting-head{
+    display: flex;
+    .settingcontainer{
+        // background-color: lightblue;
+        flex: 6;
+        
+        .maincontainer{
+            margin-top: 50px;
+            label{
+                width: 100%;
+              
+            }
+        }
+    }
+}
+.fade {
+    z-index: 999  !important;
+}
+.show{
+    z-index: 999  !important;
+}
